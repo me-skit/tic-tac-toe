@@ -1,6 +1,6 @@
 
 :root {
-  --g-border-width: 6px;
+  --g-border-width: 3px;
   --g-border-color: rgb(26, 139, 139);
 }
 
@@ -27,7 +27,7 @@ main {
   display: flex;
   height: 300px;
   width: 100%;
-  background-color: rgba(29, 158, 158, 0.911);
+  background-color: rgba(48, 167, 167, 0.911);
   justify-content: center;
   align-items: center;
 }
@@ -38,19 +38,19 @@ main {
   text-align: center;
 }
 
-.border-r {
+.bdr-r {
   border-right: var(--g-border-width) solid var(--g-border-color);
 }
 
-.border-l {
+.bdr-l {
   border-left: var(--g-border-width) solid var(--g-border-color);
 }
 
-.border-t {
+.bdr-t {
   border-top: var(--g-border-width) solid var(--g-border-color);
 }
 
-.border-b {
+.bdr-b {
   border-bottom: var(--g-border-width) solid var(--g-border-color);
 }
 
