@@ -18,7 +18,7 @@
             <td class="score-box">
               <span class="symbol">X</span>
               <span class="space">-</span>
-              <span class="score">-</span>
+              <span class="score" id="score-x">-</span>
             </td>
             <td class="score-space">
 
@@ -26,12 +26,12 @@
             <td class="score-box">
               <span class="symbol">O</span>
               <span class="space">-</span>
-              <span class="score">-</span>
+              <span class="score" id="score-o">-</span>
             </td>
           </tr>
         </tbody>
       </table>  
-      <p id="p-turn">Starting: X Turn</p>
+      <p id="p-turn">Starting: <b>X</b> Turn</p>
     </div>
 
     <div class="board">
@@ -127,6 +127,9 @@
         </tbody>
       </table>
     </div>
+    <br />
+    <br />
+    <button type="button" id="btn-again" class="hide">Play again</button>
   </main>
   <footer>
     <p class="selected"></p>

@@ -6,9 +6,36 @@ const gameplay = (() => {
   const SPOT_EMPTY = 0;
   let turn = 1;
   let ended = false;
+  let scoreX = 0;
+  let scoreO = 0;
+  let last = X;
 
-  const resetTurn = () => {
-    turn = X;
+  const getLabel = (symbol) => {
+    if (symbol === X) {
+      return 'X';
+    }
+
+    return 'O';
+  };
+
+  const resetGame = (table) => {
+    turn = last === X ? O : X;
+    last = turn;
+    ended = false;
+    table.forEach((subArr) => subArr.fill(0));
+
+    const crosses = Array.from(document.querySelectorAll('.cross'));
+    crosses.forEach(cross => {
+      cross.classList.add('hide');
+    });
+
+    const circles = Array.from(document.querySelectorAll('.circle'));
+    circles.forEach(circle => {
+      circle.classList.add('hide');
+    });
+
+    document.getElementById('p-turn').innerHTML = `Start: <b>${getLabel(turn)}</b> turn`;
+    document.getElementById('btn-again').classList.add('hide');
   };
 
   const getTurn = () => turn;
@@ -20,6 +47,7 @@ const gameplay = (() => {
   const isEnded = () => ended;
 
   const gameOver = () => {
+    document.getElementById('btn-again').classList.remove('hide');
     ended = true;
   };
 
@@ -48,14 +76,25 @@ const gameplay = (() => {
 
   const boardFilled = (table) => table.every((subArr) => subArr.every((spot) => spot !== 0));
 
+  const addScore = (symbol) => {
+    if (symbol === X) {
+      scoreX += 1;
+      document.getElementById('score-x').textContent = scoreX;
+    } else {
+      scoreO += 1;
+      document.getElementById('score-o').textContent = scoreO;
+    }
+  };
+
   return {
     getTurn,
-    resetTurn,
+    resetGame,
     switchTurn,
     isEnded,
     gameOver,
     thereIsAWinner,
     boardFilled,
+    addScore,
     X,
     O,
     SPOT_EMPTY,
@@ -72,20 +111,32 @@ squares.forEach((element) => {
         if (gameplay.getTurn() === gameplay.X) {
           board[row][column] = gameplay.X;
           element.querySelector('.cross').classList.remove('hide');
+          document.getElementById('p-turn').innerHTML = '<b>O</b> turn';
         } else {
           board[row][column] = gameplay.O;
           element.querySelector('.circle').classList.remove('hide');
+          document.getElementById('p-turn').innerHTML = '<b>X</b> turn';
         }
 
-        if (gameplay.thereIsAWinner(board, row, column, board[row][column])
-            || gameplay.boardFilled(board)) {
-          document.getElementById('p-turn').textContent = 'Game ended';
+        const symbol = board[row][column];
+        const thereIsAwinner = gameplay.thereIsAWinner(board, row, column, symbol);
+        if (thereIsAwinner || gameplay.boardFilled(board)) {
+          document.getElementById('p-turn').textContent = 'Game ended: draw';
+          if (thereIsAwinner) {
+            gameplay.addScore(symbol);
+            if (symbol === gameplay.X) {
+              document.getElementById('p-turn').innerHTML = 'Game ended, winner: <b>X</b>';
+            } else {
+              document.getElementById('p-turn').innerHTML = 'Game ended, winner: <b>O</b>';
+            }
+          }
           gameplay.gameOver();
         }
 
         gameplay.switchTurn();
-        //console.table(board);
       }
     }
   });
 });
+
+document.getElementById('btn-again').addEventListener('click', () => gameplay.resetGame(board));
