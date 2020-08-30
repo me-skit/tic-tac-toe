@@ -73,3 +73,7 @@ main {
 .score-space {
   width: 15px;
 }
+
+.hide {
+  display: none;
+}
