@@ -34,8 +34,14 @@ const gameplay = (() => {
       circle.classList.add('hide');
     });
 
+    const lines = Array.from(document.querySelectorAll('.line'));
+    lines.forEach(line => {
+      line.classList.add('hide');
+    });
+
     document.getElementById('p-turn').innerHTML = `Start: <b>${getLabel(turn)}</b> turn`;
     document.getElementById('btn-again').classList.add('hide');
+    document.getElementById('frame').style.zIndex = '-10';
   };
 
   const getTurn = () => turn;
@@ -54,24 +60,33 @@ const gameplay = (() => {
   const thereIsAWinner = (table, row, column, symbol) => {
     // check for the row in the given "row, column"
     if (table[row].every((spot) => spot === symbol)) {
-      return true;
+      return 1 + row;
     }
     // check for the column in the given "row, column"
     if ((table[0][column] === symbol)
         && (table[1][column] === symbol)
         && (table[2][column] === symbol)) {
-      return true;
+      return 4 + column;
     }
 
     // check diagonals
     if (table[1][1] === symbol) {
-      if ((table[0][0] === symbol && table[2][2] === symbol)
-        || (table[0][2] === symbol && table[2][0] === symbol)) {
-        return true;
+      if (table[0][0] === symbol && table[2][2] === symbol) {
+        return 7;
+      }
+
+      if (table[0][2] === symbol && table[2][0] === symbol) {
+        return 8;
       }
     }
 
-    return false;
+    return 0;
+  };
+
+  const drawLine = (kind) => {
+    const id = `line-0${kind}`;
+    document.getElementById(id).classList.remove('hide');
+    document.getElementById('frame').style.zIndex = '10';
   };
 
   const boardFilled = (table) => table.every((subArr) => subArr.every((spot) => spot !== 0));
@@ -95,6 +110,7 @@ const gameplay = (() => {
     thereIsAWinner,
     boardFilled,
     addScore,
+    drawLine,
     X,
     O,
     SPOT_EMPTY,
@@ -124,6 +140,7 @@ squares.forEach((element) => {
           document.getElementById('p-turn').textContent = 'Game ended: draw';
           if (thereIsAwinner) {
             gameplay.addScore(symbol);
+            gameplay.drawLine(thereIsAwinner);
             if (symbol === gameplay.X) {
               document.getElementById('p-turn').innerHTML = 'Game ended, winner: <b>X</b>';
             } else {

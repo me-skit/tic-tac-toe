@@ -25,6 +25,7 @@ main {
 
 .board {
   display: flex;
+  position: relative;
   height: 300px;
   width: 100%;
   background-color: rgba(48, 167, 167, 0.911);
@@ -54,6 +55,15 @@ main {
   border-bottom: var(--g-border-width) solid var(--g-border-color);
 }
 
+#frame {
+  position: absolute;
+  z-index: -1;
+}
+
+.hide {
+  display: none;
+}
+
 .score {
   text-align: center;
 }
@@ -72,8 +82,4 @@ main {
 
 .score-space {
   width: 15px;
-}
-
-.hide {
-  display: none;
 }
