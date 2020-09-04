@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/stylesheet.css">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome</h1>
+  </header>
+  <main>
+    <div class="score">
+      <table id="tb-score" class="t-score">
+        <tbody>
+          <tr>
+            <td class="score-box">
+              <span class="symbol">X</span>
+              <span class="space">-</span>
+              <span class="score" id="score-x">-</span>
+            </td>
+            <td class="score-space">
+
+            </td>
+            <td class="score-box">
+              <span class="symbol">O</span>
+              <span class="space">-</span>
+              <span class="score" id="score-o">-</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>  
+      <p id="p-turn">Starting: <b>X</b> Turn</p>
+    </div>
+
+    <div class="board">
+      <table id="tb-board" class="t-board" cellspacing="0" cellpadding="0" >
+        <tbody>
+          <tr>
+            <td data-column="0" data-row="0" class="square bdr-r bdr-b" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="1" data-row="0" class="square bdr-b bdr-l bdr-r" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="2" data-row="0" class="square bdr-l bdr-b" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+          </tr>
+          <tr>
+            <td data-column="0" data-row="1" class="square bdr-r bdr-t bdr-b" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="1" data-row="1" class="square bdr-t bdr-r bdr-b bdr-l" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="2" data-row="1" class="square bdr-l bdr-t bdr-b" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+          </tr>
+          <tr>
+            <td data-column="0" data-row="2" class="square bdr-r bdr-t" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="1" data-row="2" class="square bdr-t bdr-r bdr-l" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+            <td data-column="2" data-row="2" class="square bdr-l bdr-t" >
+              <svg width="60" height="60" class="circle hide">
+                <circle cx="31" cy="31" r="20" stroke="#fff" stroke-width="6" stroke-opacity="0.8" fill="none" />
+              </svg>
+              <svg width="60" height="60" class="cross hide">
+                <path d="M10,10L51,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+                <path d="M50,10L10,51" stroke="#545454" stroke-width="6" stroke-opacity="0.8" />
+              </svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+     
+      <div id="frame">
+        <svg width="204" height="205" class="">
+          <path d="M0,28L205,28" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-01" class="line hide" />
+          <path d="M0,102L205,102" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-02" class="line hide" />
+          <path d="M0,176L205,176" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-03" class="line hide" />
+
+          <path d="M28,0L28,205" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-04" class="line hide" />
+          <path d="M102,0L102,205" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-05" class="line hide" />
+          <path d="M176,0L176,205" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-06" class="line hide" />
+
+          <path d="M0,0L205,205" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-07" class="line hide" />
+          <path d="M205,0L0,205" stroke="#a84832" stroke-width="4" stroke-opacity="0.9" id="line-08" class="line hide" />
+        </svg>
+      </div>
+    </div>
+    <br />
+    <br />
+    <button type="button" id="btn-again" class="hide">Play again</button>
+  </main>
+  <footer>
+    <p class="selected"></p>
+  </footer>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
